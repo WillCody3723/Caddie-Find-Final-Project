@@ -1,0 +1,94 @@
+//
+//  ProfilePage.swift
+//  caddie find ui
+//
+//  Created by Will Cody on 4/11/22.
+//
+
+import SwiftUI
+import UIKit
+import WebKit
+
+
+
+
+
+struct ProfilePage: View {
+    
+@State private var userName: String = ""
+
+    var body: some View {
+        
+        NavigationView {
+            
+            VStack {
+                
+                TextField("User Name", text: $userName)
+                    .padding(.leading)
+                    .frame(height: 50.0)
+                    .border(Color(hue: 0.385, saturation: 1.0, brightness: 0.376), width: 1)
+                //Text Field where you create your username on profile page
+                
+                
+    
+                
+                Text("Please Review the USGA caddie rules by clicking the link below.")
+                    .font(.title)
+                    .multilineTextAlignment(.center)
+                    .padding(.bottom)
+                
+                Link("Caddie Rules", destination: URL(string: "https://golftips.golfweek.usatoday.com/caddie-regulations-20591.html")!)
+                
+                    .foregroundColor(.green)
+                
+                //web view when clicked takes you caddie rules website
+
+                
+            .navigationTitle("Your Profile")
+                
+                
+        
+            }
+            .padding()
+}
+}
+
+    
+    
+    class ViewController: UIViewController, WKNavigationDelegate {
+        
+        var webView: WKWebView!
+        
+        override func loadView() {
+            webView = WKWebView()
+            webView.navigationDelegate = self
+            view = webView
+        }
+        
+        override func viewDidLoad() {
+            super.viewDidLoad()
+            let url = URL(string: "https://golftips.golfweek.usatoday.com/caddie-regulations-20591.html")!
+            webView.load(URLRequest(url: url))
+            webView.allowsBackForwardNavigationGestures = true
+            
+        }
+    }
+    
+//Webkit code used to take user to caddie rules website
+
+
+
+
+
+struct ProfilePage_Previews: PreviewProvider {
+    static var previews: some View {
+        ProfilePage()
+        
+        
+        }
+    }
+}
+
+
+
+
