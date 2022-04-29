@@ -1,0 +1,113 @@
+//
+//  ContentView.swift
+//  caddie find ui
+//
+//  Created by Will Cody on 4/4/22.
+//
+
+import SwiftUI
+import UIKit
+
+
+struct ContentView: View {
+    @State private var firstName: String = ""
+    @State private var lastName: String = ""
+    @State private var email: String = ""
+    @State private var phoneNumber: String = ""
+    @State private var password: String = ""
+    @State private var birthDate = Date()
+  
+    var body: some View {
+        
+        
+        
+            NavigationView{
+                
+                
+                VStack {
+                    
+                    
+                    
+                TextField("First Name", text: $firstName)
+                    .padding(.leading)
+                    .frame(height: 50.0)
+                    .border(Color(hue: 0.385, saturation: 1.0, brightness: 0.376), width: 1)
+                //Text Field where you enter your first name in the sign up process.
+                
+                TextField("Last Name", text: $lastName)
+                        .padding(.leading)
+                        .frame(height: 50.0)
+                        .border(Color(hue: 0.385, saturation: 1.0, brightness: 0.376), width: 1)
+                //Text Field where you enter your last name in the sign up process.
+                    
+                    TextField("Email", text: $email)
+                            .padding(.leading)
+                            .frame(height: 50.0)
+                            .border(Color(hue: 0.385, saturation: 1.0, brightness: 0.376), width: 1)
+                //Text Field where you enter your email in the sign up process.
+                    
+                    TextField("Phone #", text: $phoneNumber)
+                            .padding(.leading)
+                            .frame(height: 50.0)
+                            .border(Color(hue: 0.385, saturation: 1.0, brightness: 0.376), width: 1)
+                //text field where you enter your phone number in the sign up process.
+                    
+                    
+                    TextField("Password", text: $password)
+                        .padding(.leading)
+                        .frame(height: 50.0)
+                        .border(Color(hue: 0.385, saturation: 1.0, brightness: 0.376), width: 1)
+                //Text Field where you create your password in the sign up process.
+                    
+                    DatePicker("Select Birth Date", selection: $birthDate, displayedComponents: [.date])
+                        .padding(.leading)
+                        .foregroundColor(Color(hue: 0.001, saturation: 0.0, brightness: 0.702))
+                        .frame(height: 50.0)
+                        .border(Color(hue: 0.385, saturation: 1.0, brightness: 0.376), width: 1)
+                //Date Picker modifier where you select you birth date in the sign up process.
+                    
+                    NavigationLink(destination: CaddieInfo()) {
+                        Text("Continue")
+
+                                    }
+                    //Navigation link that takes you to the next page where you fill out info about being a caddie
+                    
+                    
+                    .navigationTitle("Caddie Find: Sign Up")
+                    .foregroundColor(.green)
+                    
+
+                    
+                    
+                    
+                }
+                
+                .padding(.bottom, 96.0)
+                .frame(width: nil)
+                
+                }
+            }
+        }
+
+   
+
+                           
+
+
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+            .preferredColorScheme(.light)
+            .padding(.bottom)
+            
+        
+           
+            
+            
+            
+        
+      
+        
+        
+    }
+}
