@@ -1,0 +1,115 @@
+//
+//  CaddieInfo.swift
+//  caddie find ui
+//
+//  Created by Will Cody on 4/7/22.
+//
+
+import SwiftUI
+import UIKit
+
+struct CaddieInfo: View {
+    
+    struct CaddieExperiences: Hashable, Identifiable {
+        let experience: String
+        let id = UUID()
+    }
+    
+    //struct with constants used in lists
+
+    struct GolferExperiences: Identifiable {
+        let name: String
+        let caddie: [CaddieExperiences]
+        let id = UUID()
+    }
+    
+    //Struct with constants used in list
+    
+    private let experiences: [GolferExperiences] = [
+        GolferExperiences(name: "Caddie Experience",
+            caddie: [CaddieExperiences(experience: "None"),
+                     CaddieExperiences(experience: "Beginner"),
+                     CaddieExperiences(experience: "Intermediate"),
+                     CaddieExperiences(experience: "Veteran")]),
+        GolferExperiences(name: "Golfing Experience",
+            caddie:  [CaddieExperiences(experience: "None"),
+                      CaddieExperiences(experience: "Beginner"),
+                      CaddieExperiences(experience: "Intermediate"),
+                      CaddieExperiences(experience: "Veteran")]),
+        GolferExperiences(name: "Caddie Preferences",
+            caddie: [CaddieExperiences(experience: "1 Bag"),
+                    CaddieExperiences(experience: "2 Bags"),
+                    CaddieExperiences(experience: "Forecaddie")])
+    ]
+    
+    //Dictionary that stores the options the users can select
+    
+
+    
+@State private var multiSelection = Set<UUID>()
+    //Allows for multiple selections to be made in the list
+    
+    var body: some View {
+        
+      
+      
+        NavigationView {
+            
+            VStack {
+                
+            List(selection: $multiSelection) {
+                ForEach(experiences) { region in
+                    Section(header: Text(" \(region.name)")) {
+                        ForEach(region.caddie) { CaddieExperiences in
+                            Text(CaddieExperiences.experience)
+                            
+                            
+                //List that displays the options caddie picks about their experiences and preferences.
+                        }
+                        
+                        
+                        
+                    }
+                    
+                }
+                
+              
+            }
+            
+           
+                
+                    
+                
+                
+                NavigationLink(destination: ProfilePage()) {
+                    Text("Continue")
+                        .padding(.top)
+                }
+                
+              
+                
+                //Navigation Link that tales the user to their Profile Page
+                
+            .navigationTitle("Caddie Information")
+            .toolbar { EditButton() }
+            .foregroundColor(.green)
+        }
+    }
+}
+      
+    
+    
+    
+struct CaddieInfo_Previews: PreviewProvider
+        {
+    static var previews: some View {
+        CaddieInfo()
+.previewInterfaceOrientation(.portraitUpsideDown)
+        ScrollView {
+            //Scrollview to see all information on the view
+        }
+    }
+}
+}
+
+
